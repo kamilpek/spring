@@ -1,0 +1,8 @@
+*.db
+.metadata
+.settings
+.project
+.classpath
+target
+tmp/
+*.tmp
