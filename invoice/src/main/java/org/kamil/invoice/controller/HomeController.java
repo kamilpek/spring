@@ -10,7 +10,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String welcome(Model model) {
 		model.addAttribute("greeting", "Witaj w programie do fakturowania!");
-		model.addAttribute("tagline", "Przejd dalej za pomoc¹ poni¿szych przycisków");
+		model.addAttribute("tagline", "PrzejdŸ dalej za pomoc¹ poni¿szych przycisków");
 		
 		return "welcome";
 	}

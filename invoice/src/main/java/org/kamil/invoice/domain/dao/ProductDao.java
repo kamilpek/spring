@@ -22,8 +22,7 @@ public class ProductDao {
 				+ "name varchar(32) not null, netto real not null, brutto real not null, tax real not null, "
 				+ "sumNetto real, sumBrutto real, sumTax real, documentId varchar(16));";
 		
-		try {
-//			stat.execute("DROP TABLE IF EXISTS products;");
+		try {			
 			stat.executeUpdate(table_create);			
 		} catch (SQLException e){
             System.err.println("PRODUCTS | Create table error "+ e.getMessage() );
@@ -104,6 +103,51 @@ public class ProductDao {
 		}
 		
 		return table_products;
+	}
+	
+	public float select_nettosum(String documentId) {
+		String query = "SELECT sum(netto) as sum_netto from products where documentId = " + documentId;
+		float nettosum = 0;
+		
+		try {
+			ResultSet rs = stat.executeQuery(query);
+			nettosum = rs.getFloat("sum_netto");
+		} catch (SQLException e) {
+			System.err.println("PRODUCTS | Select netto sum where document error "+ e.getMessage() );
+	        System.exit(0);
+		}
+		
+		return nettosum;
+	}
+	
+	public float select_bruttosum(String documentId) {
+		String query = "SELECT sum(brutto) as sum_brutto from products where documentId = " + documentId;
+		float bruttosum = 0;
+		
+		try {
+			ResultSet rs = stat.executeQuery(query);
+			bruttosum = rs.getFloat("sum_brutto");
+		} catch (SQLException e) {
+			System.err.println("PRODUCTS | Select brutto sum where document error "+ e.getMessage() );
+	        System.exit(0);
+		}
+		
+		return bruttosum;
+	}
+	
+	public float select_taxsum(String documentId) {
+		String query = "SELECT sum(tax) as sum_tax from products where documentId = " + documentId;
+		float taxsum = 0;
+		
+		try {
+			ResultSet rs = stat.executeQuery(query);
+			taxsum = rs.getFloat("sum_tax");
+		} catch (SQLException e) {
+			System.err.println("PRODUCTS | Select tax sum where document error "+ e.getMessage() );
+	        System.exit(0);
+		}
+		
+		return taxsum;
 	}
 	
 	public void insert_product(Product prod) {		

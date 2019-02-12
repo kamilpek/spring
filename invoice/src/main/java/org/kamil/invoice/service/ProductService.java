@@ -10,6 +10,12 @@ public interface ProductService {
 	
 	List<Product> getProductsByInvoice(String invoice);
 	
+	float getNettoSumByInvoice(String invoice);
+	
+	float getBruttoSumByInvoice(String invoice);
+	
+	float getTaxSumByInvoice(String invoice);	
+	
 	Product getProductById(String productId);
 	
 	void addProduct(Product product);

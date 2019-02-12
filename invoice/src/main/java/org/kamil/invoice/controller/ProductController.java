@@ -1,6 +1,10 @@
 package org.kamil.invoice.controller;
 
+import java.util.Map;
+
+import org.kamil.invoice.domain.Document;
 import org.kamil.invoice.domain.Product;
+import org.kamil.invoice.service.DocumentService;
 import org.kamil.invoice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +28,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private DocumentService documentService;
+	
 	@RequestMapping({"/all", "/"})
 	public ModelAndView allProducts() {
 		ModelAndView modelAndView = new ModelAndView();		
@@ -40,13 +47,24 @@ public class ProductController {
 	
 	@RequestMapping("/product")
 	public String getProductById(@RequestParam("id") String productId, Model model) {
-		model.addAttribute("product", productService.getProductById(productId));
+		Product product = productService.getProductById(productId);
+		Document document = documentService.getDocumentById(product.getDocumentId());
+		
+		model.addAttribute("product", product);
+		model.addAttribute("document", document);
 		return "product";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getAddNewProductForm(@ModelAttribute("newProduct") Product newProduct) {
-	   return "addProduct";
+	public ModelAndView getAddNewProductForm() {
+		ModelAndView mav = new ModelAndView("newProduct");
+		Map<String, String> documents = documentService.getDocumentsMap();
+		
+		mav.addObject("documentsMap", documents);
+		mav.addObject("newProduct", new Product());
+		mav.setViewName("addProduct");
+		
+		return mav;
 	}
 	   
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -63,7 +81,7 @@ public class ProductController {
 	
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
-		binder.setAllowedFields("productId","name","productId", "name", "quantity", "netto", "brutto", "tax", "sumNetto", "sumBrutto", "sumTax", "documentId");
+		binder.setAllowedFields("productId", "name", "quantity", "netto", "brutto", "tax", "sumNetto", "sumBrutto", "sumTax", "documentId");
 	}
 	
 }

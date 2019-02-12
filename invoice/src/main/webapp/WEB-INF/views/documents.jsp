@@ -25,7 +25,7 @@
 							<span class="glyphicon glyphicon-euro"></span> sprzedawcy</a>
 					<a href="<spring:url value="/clients/all" />" class="btn btn-default">
 							<span class="glyphicon glyphicon-user"></span> klienci</a>					
-				</p>				
+				</p>
 			</div>
 		</div>
 	</section>
@@ -36,7 +36,7 @@
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
-							<h3>${document.documentNumber}</h3>							
+							<h3>Numer: ${document.documentNumber}</h3>							
 							<p>PLN netto: ${document.netto}, brutto: ${document.brutto}, vat: ${document.tax}</p>							
 							<p>
 								<a

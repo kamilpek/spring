@@ -1,6 +1,7 @@
 package org.kamil.invoice.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kamil.invoice.domain.Document;
 import org.kamil.invoice.domain.repository.DocumentsRepository;
@@ -22,7 +23,15 @@ public class DocumentServiceImpl implements DocumentService {
 		return documentRepository.getDocumentById(documentId);
 	}
 	
+	public Map<String, String> getDocumentsMap(){
+		return documentRepository.getDocumentsMap();
+	}
+	
 	public void addDocument(Document document) {
 		documentRepository.addDocument(document);
+	}
+	
+	public void updateDocument(String documentId, String column, String value) {
+		documentRepository.updateDocument(documentId, column, value);
 	}
 }

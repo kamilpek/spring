@@ -14,13 +14,21 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>Towar</h1>
+				<p>					
+					<a href="<spring:url value="/documents/all" />" class="btn btn-default">
+							<span class="glyphicon glyphicon-file"></span> faktury</a>
+					<a href="<spring:url value="/sellers/all" />" class="btn btn-default">
+							<span class="glyphicon glyphicon-euro"></span> sprzedawcy</a>
+					<a href="<spring:url value="/clients/all" />" class="btn btn-default">
+							<span class="glyphicon glyphicon-user"></span> klienci</a>					
+				</p>
 			</div>
 		</div>
 	</section>
 	<section class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<h3>${product.name}</h3>				
+				<h3>${product.name}</h3>
 				<p><strong>Netto </strong>:${product.netto}</p>
 				<p><strong>Brutto</strong>: ${product.brutto}</p>
 				<p><strong>VAT</strong>: ${product.tax}</p>
@@ -29,14 +37,16 @@
 				<p><strong>Suma Brutto</strong>: ${product.sumBrutto}</p>
 				<p><strong>Suma VAT</strong>: ${product.sumTax}</p>
 				<p>
-					<a href="#" class="btn btn-warning btn-large"> <span
-						class="glyphicon-shopping-cart glyphicon"></span> Zamów teraz
-					</a> <a href="<spring:url value="/products/all" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span> wstecz
+					<strong>Faktura nr</strong>: ${document.documentNumber}
+					<a
+						href="<spring:url value="/documents/document?id=${document.documentId}" /> "
+						class="btn btn-primary btn-sm"> <span
+						class="glyphicon-info-sign glyphicon" /></span> Szczegóły
 					</a>
-
 				</p>
-
+				<p><a href="<spring:url value="/products/all" />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span> wstecz
+				</a></p>
 			</div>
 		</div>
 	</section>

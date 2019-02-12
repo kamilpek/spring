@@ -1,10 +1,16 @@
 package org.kamil.invoice.controller;
 
+import java.util.List;
 import java.util.Map;
 
+import org.kamil.invoice.domain.Client;
 import org.kamil.invoice.domain.Document;
+import org.kamil.invoice.domain.Product;
+import org.kamil.invoice.domain.Seller;
+import org.kamil.invoice.domain.pdf.DocumentPdf;
 import org.kamil.invoice.service.ClientService;
 import org.kamil.invoice.service.DocumentService;
+import org.kamil.invoice.service.ProductService;
 import org.kamil.invoice.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +37,9 @@ public class DocumentController {
 	@Autowired
 	private SellerService sellerService;
 	
+	@Autowired
+	private ProductService productService;
+	
 	@RequestMapping({"/all", "/"})
 	public ModelAndView allDocuments() {
 		ModelAndView modelAndView = new ModelAndView();		
@@ -40,9 +49,43 @@ public class DocumentController {
 	}
 	
 	@RequestMapping("/document")
-	public String getProductById(@RequestParam("id") String documentId, Model model) {
-		model.addAttribute("document", documentService.getDocumentById(documentId));
+	public String getDocumentById(@RequestParam("id") String documentId, Model model) {
+		Document document = documentService.getDocumentById(documentId);
+		Client client = clientService.getClientById(document.getClientId());
+		Seller seller = sellerService.getSellerById(document.getSellerId());
+		List<Product> products = productService.getProductsByInvoice(documentId);
+		
+		model.addAttribute("document", document);
+		model.addAttribute("client", client);
+		model.addAttribute("seller", seller);
+		model.addAttribute("products", products);
 		return "document";
+	}
+	
+	@RequestMapping("/calc")
+	public String calcDocumentValue(@RequestParam("id") String documentId, Model model) {		
+		float netto_sum = productService.getNettoSumByInvoice(documentId);
+		float brutto_sum = productService.getBruttoSumByInvoice(documentId);
+		float tax_sum = productService.getTaxSumByInvoice(documentId);
+		
+		documentService.updateDocument(documentId, "netto", Float.toString(netto_sum));
+		documentService.updateDocument(documentId, "brutto", Float.toString(brutto_sum));
+		documentService.updateDocument(documentId, "tax", Float.toString(tax_sum));
+		
+		return "redirect:/documents/document?id=" + documentId;
+	}
+	
+	@RequestMapping("/pdf")
+	public String generatePdf(@RequestParam("id") String documentId, Model model) {
+		Document document = documentService.getDocumentById(documentId);
+		Client client = clientService.getClientById(document.getClientId());
+		Seller seller = sellerService.getSellerById(document.getSellerId());
+		List<Product> products = productService.getProductsByInvoice(documentId);
+		
+		DocumentPdf pdf = new DocumentPdf();
+		pdf.generatePdf(document, client, seller, products);		
+		
+		return "redirect:/documents/documentPdf";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -69,6 +112,6 @@ public class DocumentController {
 		
 	   	documentService.addDocument(documentToBeAdded);
 		return "redirect:/documents/all";
-	}
+	}	
 	
 }

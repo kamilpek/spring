@@ -23,6 +23,18 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.getProductsByInvoice(invoice);
 	}
 	
+	public float getNettoSumByInvoice(String invoice) {
+		return productRepository.getNettoSumByInvoice(invoice);
+	}
+	
+	public float getBruttoSumByInvoice(String invoice) {
+		return productRepository.getBruttoSumByInvoice(invoice);
+	}
+	
+	public float getTaxSumByInvoice(String invoice) {
+		return productRepository.getTaxSumByInvoice(invoice);
+	}
+	
 	public Product getProductById(String productId) {
 		return productRepository.getProductById(productId);
 	}

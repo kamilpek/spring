@@ -15,7 +15,7 @@
 			<div class="container">
 				<h1>Towary</h1>	
 				<p><a href="<spring:url value="/products/add" />" class="btn btn-default">
-					<span class="glyphicon glyphicon-plus"></span> dodaj produkt</a></p>
+					<span class="glyphicon glyphicon-plus"></span> dodaj towar</a></p>
 				<p>					
 					<a href="<spring:url value="/documents/all" />" class="btn btn-default">
 							<span class="glyphicon glyphicon-file"></span> faktury</a>

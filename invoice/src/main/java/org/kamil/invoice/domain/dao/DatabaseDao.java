@@ -27,8 +27,7 @@ public class DatabaseDao {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("jdbc:sqlite:invoice.db");
-			stat = conn.createStatement();
-			stat.executeUpdate("DROP TABLE IF EXISTS documents;");
+			stat = conn.createStatement();			
 			System.out.println("Connection succesfull");
 		} catch (SQLException e) {
 			System.err.println("Database error: \n" + e.getMessage());

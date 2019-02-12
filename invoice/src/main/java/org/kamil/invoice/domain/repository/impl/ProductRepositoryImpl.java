@@ -19,9 +19,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	
 	public ProductRepositoryImpl() {
 		super();
-		productDao.create_table();		
-//		Product tablet_Nexus = new Product(1, "tablet nexus", 1, 1000, 1230, 230, "1");
-//		addProduct(tablet_Nexus);
+		productDao.create_table();
 	}
 	
 	public List<Product> getAllProducts() {
@@ -32,6 +30,18 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public List<Product> getProductsByInvoice(String documentId) {		
 		listOfProducts = productDao.select_product_wheredocument(documentId);
 		return listOfProducts;
+	}
+	
+	public float getNettoSumByInvoice(String documentId) {
+		return productDao.select_nettosum(documentId);
+	}
+	
+	public float getBruttoSumByInvoice(String documentId) {
+		return productDao.select_bruttosum(documentId);
+	}
+	
+	public float getTaxSumByInvoice(String documentId) {
+		return productDao.select_taxsum(documentId);
 	}
 	
 	public Product getProductById(String productId) {

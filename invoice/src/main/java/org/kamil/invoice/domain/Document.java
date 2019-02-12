@@ -28,6 +28,23 @@ public class Document {
 		this.clientId = clientId;
 		this.sellerId = sellerId;
 	}
+	
+	public Document(String documentId, String documentNumber, String city, 
+			String date, String term, String payment, String clientId, String sellerId,
+			float netto, float brutto, float tax) {
+		super();
+		this.documentId = documentId;
+		this.documentNumber = documentNumber;
+		this.city = city;
+		this.date = date;
+		this.term = term;
+		this.payment = payment;
+		this.netto = netto;
+		this.brutto = brutto;
+		this.tax = tax;
+		this.clientId = clientId;
+		this.sellerId = sellerId;
+	}
 
 	public Document() {
 		super();
