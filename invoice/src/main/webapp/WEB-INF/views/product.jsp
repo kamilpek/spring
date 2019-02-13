@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-5">
 				<h3>${product.name}</h3>
-				<p><strong>Netto </strong>:${product.netto}</p>
+				<p><strong>Netto</strong>: ${product.netto}</p>
 				<p><strong>Brutto</strong>: ${product.brutto}</p>
 				<p><strong>VAT</strong>: ${product.tax}</p>
 				<p><strong>Ilość</strong>: ${product.quantity}</p>
@@ -37,7 +37,7 @@
 				<p><strong>Suma Brutto</strong>: ${product.sumBrutto}</p>
 				<p><strong>Suma VAT</strong>: ${product.sumTax}</p>
 				<p>
-					<strong>Faktura nr</strong>: ${document.documentNumber}
+					<strong>Faktura nr</strong>: ${document.documentNumber} 
 					<a
 						href="<spring:url value="/documents/document?id=${document.documentId}" /> "
 						class="btn btn-primary btn-sm"> <span

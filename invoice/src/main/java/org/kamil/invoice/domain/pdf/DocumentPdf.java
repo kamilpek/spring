@@ -27,6 +27,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
+import com.itextpdf.text.pdf.BaseFont;
 
 @Controller
 public class DocumentPdf {
@@ -38,39 +39,48 @@ public class DocumentPdf {
 			PdfWriter writer = PdfWriter.getInstance(pdf, new FileOutputStream("faktura.pdf"));
 			pdf.open();
 			
-			Font font_tilte = new Font(FontFamily.TIMES_ROMAN, 20);
-			Font font_regular = new Font(FontFamily.TIMES_ROMAN, 14);
+			Font font_tilte = null;
+			Font font_regular = null;
+			BaseFont helvetica;
+			
+			try {
+				helvetica = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
+				font_regular = new Font(helvetica, 14);
+				font_tilte = new Font(helvetica, 20);
+			} catch (IOException e) {
+				System.err.println("PDF font load error" + e.getMessage());	
+			}
 			
 			Paragraph p_date = new Paragraph("Miejsce sprzeda¿y: " + document.getCity() + 
 					Chunk.NEWLINE + "Data sprzeda¿y: " + document.getDate() + 
 					Chunk.NEWLINE + "Termin p³atnoœci: " + document.getTerm() +
 					Chunk.NEWLINE + "Sposób p³atnoœci: " + document.getPayment() +
-					Chunk.NEWLINE + "ORYGINAL/KOPIA", font_regular);
+					Chunk.NEWLINE + "ORYGINA£/KOPIA", font_regular);
 			p_date.setAlignment(Element.ALIGN_RIGHT);
 			pdf.add(p_date);
 			pdf.add(Chunk.NEWLINE);
 			
-			Paragraph p_persons_head = new Paragraph("SPRZEDAWCA");
+			Paragraph p_persons_head = new Paragraph("SPRZEDAWCA", font_regular);
 			p_persons_head.add(new Chunk(new Chunk(new VerticalPositionMark())));
 			p_persons_head.add("NABYWCA");
 			pdf.add(p_persons_head);
 			
-			Paragraph p_persons_name = new Paragraph(seller.getName());
+			Paragraph p_persons_name = new Paragraph(seller.getName(), font_regular);
 			p_persons_name.add(new Chunk(new Chunk(new VerticalPositionMark())));
 			p_persons_name.add(client.getName());
 			pdf.add(p_persons_name);
 			
-			Paragraph p_persons_nip = new Paragraph(seller.getNip());
+			Paragraph p_persons_nip = new Paragraph(seller.getNip(), font_regular);
 			p_persons_nip.add(new Chunk(new Chunk(new VerticalPositionMark())));
 			p_persons_nip.add(client.getNip());
 			pdf.add(p_persons_nip);
 			
-			Paragraph p_persons_street = new Paragraph(seller.getStreet());
+			Paragraph p_persons_street = new Paragraph(seller.getStreet(), font_regular);
 			p_persons_street.add(new Chunk(new Chunk(new VerticalPositionMark())));
 			p_persons_street.add(client.getStreet());
 			pdf.add(p_persons_street);
 			
-			Paragraph p_persons_city = new Paragraph(seller.getPost() + " " + seller.getCity());
+			Paragraph p_persons_city = new Paragraph(seller.getPost() + " " + seller.getCity(), font_regular);
 			p_persons_city.add(new Chunk(new Chunk(new VerticalPositionMark())));
 			p_persons_city.add(client.getPost() + " " + client.getCity());
 			pdf.add(p_persons_city);			
@@ -83,21 +93,21 @@ public class DocumentPdf {
 			pdf.add(new Paragraph(Chunk.NEWLINE + " " + Chunk.NEWLINE));			
 			PdfPTable table_top = new PdfPTable(6);
 			table_top.setWidthPercentage(100);
-			table_top.addCell("LP");
-			table_top.addCell("Nazwa");
-			table_top.addCell("Ilosc");
-			table_top.addCell("Netto [PLN]");
-			table_top.addCell("Brutto [PLN]");
-			table_top.addCell("VAT [PLN]");
+			table_top.addCell(new Paragraph("LP", font_regular));
+			table_top.addCell(new Paragraph("Nazwa", font_regular));
+			table_top.addCell(new Paragraph("Iloœæ", font_regular));
+			table_top.addCell(new Paragraph("Netto [PLN]", font_regular));
+			table_top.addCell(new Paragraph("Brutto [PLN]", font_regular));
+			table_top.addCell(new Paragraph("VAT [PLN]", font_regular));
 			
 			int i = 1;
 			for(Product product : products) {
-				table_top.addCell(String.valueOf(i));
-				table_top.addCell(product.getName());
-				table_top.addCell(String.valueOf(product.getQuantity()));
-				table_top.addCell(String.valueOf(product.getSumNetto()));
-				table_top.addCell(String.valueOf(product.getSumBrutto()));
-				table_top.addCell(String.valueOf(product.getSumTax()));
+				table_top.addCell(new Paragraph(String.valueOf(i), font_regular));
+				table_top.addCell(new Paragraph(product.getName(), font_regular));
+				table_top.addCell(new Paragraph(String.valueOf(product.getQuantity()), font_regular));
+				table_top.addCell(new Paragraph(String.valueOf(product.getSumNetto()), font_regular));
+				table_top.addCell(new Paragraph(String.valueOf(product.getSumBrutto()), font_regular));
+				table_top.addCell(new Paragraph(String.valueOf(product.getSumTax()), font_regular));
 				i++;
 			}
 

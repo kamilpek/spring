@@ -121,7 +121,7 @@ public class ProductDao {
 	}
 	
 	public float select_bruttosum(String documentId) {
-		String query = "SELECT sum(brutto) as sum_brutto from products where documentId = " + documentId;
+		String query = "SELECT sum(sumBrutto) as sum_brutto from products where documentId = " + documentId;
 		float bruttosum = 0;
 		
 		try {
@@ -136,7 +136,7 @@ public class ProductDao {
 	}
 	
 	public float select_taxsum(String documentId) {
-		String query = "SELECT sum(tax) as sum_tax from products where documentId = " + documentId;
+		String query = "SELECT sum(sumTax) as sum_tax from products where documentId = " + documentId;
 		float taxsum = 0;
 		
 		try {

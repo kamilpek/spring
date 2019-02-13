@@ -15,14 +15,16 @@
 			<div class="container">
 				<h1>Faktura</h1>
 				<p><a href="<spring:url value="/products/add" />" class="btn btn-default">
-					<span class="glyphicon glyphicon-plus"></span> dodaj produkt</a></p>
+					<span class="glyphicon glyphicon-plus"></span> dodaj towar</a></p>
 				<p>					
 					<a href="<spring:url value="/documents/all" />" class="btn btn-default">
-							<span class="glyphicon glyphicon-file"></span> faktury</a>
+						<span class="glyphicon glyphicon-file"></span> faktury</a>
 					<a href="<spring:url value="/sellers/all" />" class="btn btn-default">
-							<span class="glyphicon glyphicon-euro"></span> sprzedawcy</a>
+						<span class="glyphicon glyphicon-euro"></span> sprzedawcy</a>
 					<a href="<spring:url value="/clients/all" />" class="btn btn-default">
-							<span class="glyphicon glyphicon-user"></span> klienci</a>					
+						<span class="glyphicon glyphicon-user"></span> klienci</a>
+					<a href="<spring:url value="/products/all" />" class="btn btn-default">
+						<span class="glyphicon glyphicon glyphicon-shopping-cart"></span> towary</a>					
 				</p>
 				<hr>
 				
@@ -58,13 +60,13 @@
 		<div>
 			<a
 				href="<spring:url value="/documents/calc?id=${document.documentId}" /> "
-				class="btn btn-primary btn-sm"> <span
-				class="glyphicon-info-sign glyphicon" /></span> Przelicz fakturę
+				class="btn btn-danger"> <span
+				class="glyphicon-flash glyphicon" /></span> Przelicz fakturę
 			</a>
 			<a
 				href="<spring:url value="/documents/pdf?id=${document.documentId}" /> "
-				class="btn btn-primary btn-sm"> <span
-				class="glyphicon-info-sign glyphicon" /></span> Generuj PDF
+				class="btn btn-success"> <span
+				class="glyphicon-floppy-disk glyphicon" /></span> Generuj PDF
 			</a>
 		</div>
 		<hr>

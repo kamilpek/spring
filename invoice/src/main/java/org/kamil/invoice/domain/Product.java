@@ -26,7 +26,7 @@ public class Product {
 		this.brutto = brutto;
 		this.tax = tax;
 		this.sumNetto = netto * quantity;
-		this.sumBrutto = brutto  * quantity;
+		this.sumBrutto = brutto * quantity;
 		this.sumTax = tax * quantity;
 		this.documentId = documentId;
 	}
