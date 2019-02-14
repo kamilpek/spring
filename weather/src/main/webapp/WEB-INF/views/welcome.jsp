@@ -16,7 +16,7 @@
 					<p> ${tagline} </p>
 					<hr>
 					<p>					
-						<a href="<spring:url value="/imgws" />" class="btn btn-default">
+						<a href="<spring:url value="/imgws/all" />" class="btn btn-default">
 								<span class="glyphicon glyphicon-file"></span> Pomiary IMGW</a>				
 					</p>						
 				</div>

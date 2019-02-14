@@ -32,16 +32,19 @@
 		    	<th>Prędkość wiatru</th>
 		    	<th>Suma opadu</th>
 		    	<th>Ciśnienie</th>
+		    	<th>Akcje</th>
 			</tr>
 			<c:forEach items="${imgws}" var="imgw">
 			<tr>
 				<td>${imgw.stacja}</td>
 				<td>${imgw.godzina}</td> 
 				<td>${imgw.data}</td>
-				<td>${imgw.temperatura}</td>
-				<td>${imgw.predkosc_wiatru}</td>
-				<td>${imgw.suma_opadu}</td>
-				<td>${imgw.cisnienie}</td>
+				<td>${imgw.temperatura}&#176;C</td>
+				<td>${imgw.predkosc_wiatru} mm/s</td>
+				<td>${imgw.suma_opadu} mm/h</td>
+				<td>${imgw.cisnienie} hPa</td>
+				<td><a href="<spring:url value="/imgws/station?id=${imgw.id_stacji}" /> " class="btn btn-sm btn-primary"> 
+					<span class="glyphicon-info-sign glyphicon" /></span> Szczegóły </a></td>
 			</tr>
 			</c:forEach>
 		  </table>
