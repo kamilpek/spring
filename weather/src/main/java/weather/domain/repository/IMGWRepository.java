@@ -6,7 +6,7 @@ import weather.domain.IMGW;
 
 public interface IMGWRepository {
 	
-	ArrayList<IMGW> getDataFromWeb();
+	ArrayList<IMGW> getAllImgws();
 
 	IMGW getMeasurWhereId(String numer_stacji);
 }

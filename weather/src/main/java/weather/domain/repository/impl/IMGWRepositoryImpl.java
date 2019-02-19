@@ -19,7 +19,7 @@ public class IMGWRepositoryImpl implements IMGWRepository {
 		imgwlist = imgwjson.download();
 	}
 
-	public ArrayList<IMGW> getDataFromWeb() {
+	public ArrayList<IMGW> getAllImgws() {
 		return imgwlist;
 	}
 	

@@ -21,7 +21,7 @@ public class IMGWController {
 	@RequestMapping({"/all", "/"})
 	public ModelAndView showAll() {
 		ModelAndView modelAndView = new ModelAndView();		
-		modelAndView.addObject("imgws", imgwrepository.getDataFromWeb());
+		modelAndView.addObject("imgws", imgwrepository.getAllImgws());
 		modelAndView.setViewName("imgws");
 		return modelAndView;
 	}
