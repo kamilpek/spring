@@ -1,7 +1,12 @@
-package weather.domain;
+package weather.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class IMGW {
 	
+	@Id
 	private String id_stacji;
 	private String stacja;
 	private String data;
