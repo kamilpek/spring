@@ -13,7 +13,10 @@
 			<div class="jumbotron">
 				<div class="container">
 					<h1> ${greeting} </h1>
-					<p> ${tagline} </p>	
+					<p> ${tagline} </p>
+					<hr>
+					<a href="<spring:url value="/imgws/all" />" class="btn btn-success">
+							<span class="glyphicon glyphicon-cloud"></span> Lista pomiarów IMGW</a>
 				</div>
 			</div>
 		</section>

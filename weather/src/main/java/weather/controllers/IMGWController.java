@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,8 +15,8 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import weather.models.IMGW;
@@ -36,17 +37,22 @@ public class IMGWController {
 		return model;
 	}
 	
-	@RequestMapping("/station")
-	public String station(@RequestParam("id") String numer_stacji, Model model) {
-		Optional<IMGW> imgw = repository.findById(numer_stacji);
-		model.addAttribute("imgw", imgw);
+	@RequestMapping(value = "/{id}")
+	public String station(@PathVariable("id") String id, Model model) {
+		Optional<IMGW> imgw = repository.findById(id);		
+		model.addAttribute("imgw", imgw.get());
 		return "station";
 	}
 	
 	@RequestMapping("/download")
-	public String test(Model model) {		
-		this.getDataFromWeb();
+	public String test(Model model) {
+		this.flushData();		
+		this.getDataFromWeb();		
 		return "redirect:/imgws/all";
+	}
+	
+	public void flushData() {
+		repository.deleteAll();
 	}
 	
 	public void getDataFromWeb() {		
@@ -84,7 +90,8 @@ public class IMGWController {
 					IMGW imgw = new IMGW(id_stacji, stacja, data, godzina, temperatura,
 							predkosc_wiatru, kierunek_wiatru, wilgotnosc_wzgledna, suma_opadu, cisnienie);
 					
-					repository.save(imgw);					
+					imgw.setId(ObjectId.get().toString());
+					repository.save(imgw);
 				}
 			} catch (ParseException e) {
 				System.err.println("DOWNLOAD | parser error "+ e.getMessage() );

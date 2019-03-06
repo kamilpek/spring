@@ -43,7 +43,7 @@
 				<td>${imgw.predkosc_wiatru} mm/s</td>
 				<td>${imgw.suma_opadu} mm/h</td>
 				<td>${imgw.cisnienie} hPa</td>
-				<td><a href="<spring:url value="/imgws/station?id=${imgw.id_stacji}" /> " class="btn btn-sm btn-primary"> 
+				<td><a href="<spring:url value="/imgws/${imgw.id}" /> " class="btn btn-sm btn-primary"> 
 					<span class="glyphicon-info-sign glyphicon" /></span> Szczegóły </a></td>
 			</tr>
 			</c:forEach>

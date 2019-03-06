@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class IMGW {
 	
 	@Id
+	private String id;
 	private String id_stacji;
 	private String stacja;
 	private String data;
@@ -35,6 +36,14 @@ public class IMGW {
 		this.wilgotnosc_wzgledna = wilgotnosc_wzgledna;
 		this.suma_opadu = suma_opadu;
 		this.cisnienie = cisnienie;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getId_stacji() {
