@@ -23,6 +23,7 @@
 				<tr>
 			      <th scope="col">#</th>
 			      <th scope="col">Tytuł</th>
+			      <th scope="col">Dodany</th>
 			      <th scope="col">Autor</th>
 			      <th scope="col">Akcje</th>
 			    </tr>
@@ -32,6 +33,7 @@
 					<tr>
 						<td>${article.articleID}</td>
 						<td>${article.title}</td>
+						<td>${article.created}</td>
 						<td>${article.author}</td>
 						<td><a href="<spring:url value="/articles/article?id=${article.articleID}" /> "
 							class="btn btn-sm btn-success"> Więcej </a>
@@ -40,7 +42,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<p><a href="<spring:url value="/articles/add"/>" class="btn btn-block btn btn-outline-success">Dodaj Artykuł</a></p>	
+		<p><a href="<spring:url value="/articles/add"/>" class="btn btn-block btn btn-outline-success">Dodaj Artykuł</a></p>
+		<p><a href="<spring:url value="/" /> " class="btn btn-block btn-outline-primary "> Strona Główna</a></p>
 	</section>
 </body>
 </html>

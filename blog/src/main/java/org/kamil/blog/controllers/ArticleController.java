@@ -1,5 +1,8 @@
 package org.kamil.blog.controllers;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.kamil.blog.models.Article;
 import org.kamil.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +52,9 @@ public class ArticleController {
 			throw new RuntimeException("Próba wiązania niedozwolonych pól: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		
+		Date date = new java.util.Date();
+		Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+		articleToBeAdded.setCreated(timestamp);
 		articleService.addArticle(articleToBeAdded);
 		return "redirect:/articles/all";
 	}

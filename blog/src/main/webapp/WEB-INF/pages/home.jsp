@@ -20,6 +20,7 @@
 			<section>		
 				<div class="container">
 					<h3>${article.title}</h3>
+					<p class="articles-info">Dodany: ${article.created}</p>
 					<p class="articles-header">${article.intro}</p>
 					<p class="articles-btn"><a href="<spring:url value="/articles/article?id=${article.articleID}" /> "
 					   class="btn btn-sm btn-outline-primary "> Czytaj więcej...</a></p>
@@ -28,10 +29,11 @@
 			</section>
 		</c:forEach>
 		<section>			
-			<div class="container">
+			<div class="container user-buttons">
 				<c:choose>
 				    <c:when test="${permission}">				         
 				        <a href="<spring:url value="/logout" /> " class="btn btn-sm btn-outline-danger "> Wyloguj</a>
+				        <a href="<spring:url value="/articles/" /> " class="btn btn-sm btn-outline-primary "> Artykuły</a>
 				    </c:when>    
 				    <c:otherwise>
 				        <a href="<spring:url value="/login" /> " class="btn btn-sm btn-outline-success "> Zaloguj</a>

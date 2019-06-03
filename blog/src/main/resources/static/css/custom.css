@@ -11,3 +11,12 @@
 .articles-btn{
 	text-align: right;
 }
+
+.articles-info{
+	color: #606060;
+	font-style: italic;
+}
+
+.user-buttons{
+	padding-bottom: 1rem;
+}

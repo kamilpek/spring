@@ -1,5 +1,7 @@
 package org.kamil.blog.models;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,17 +27,21 @@ public class Article {
 	@Column(name = "author", nullable = false)
 	private String author;
 	
+	@Column(name = "created", nullable = false)
+	Timestamp created;
+	
 	public Article() {
 		super();
 	}	
 
-	public Article(int articleID, String title, String intro, String content, String author) {
+	public Article(int articleID, String title, String intro, String content, String author, Timestamp created) {
 		super();
 		this.articleID = articleID;
 		this.title = title;
 		this.intro = intro;
 		this.content = content;
 		this.author = author;
+		this.created = created;
 	}
 
 	public int getArticleID() {
@@ -77,5 +83,13 @@ public class Article {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
+	}	
 
 }

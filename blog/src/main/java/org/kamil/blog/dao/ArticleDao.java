@@ -69,7 +69,7 @@ public class ArticleDao {
 	@Transactional
 	public List<Article> getAllArticles(){
 		EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-		String strQuery = "SELECT a FROM Article a WHERE a.articleID IS NOT NULL";		
+		String strQuery = "SELECT a FROM Article a WHERE a.articleID IS NOT NULL ORDER BY a.articleID DESC";		
 		TypedQuery<Article> tq = entityManager.createQuery(strQuery, Article.class);
 		
 		List<Article> articles = null;
