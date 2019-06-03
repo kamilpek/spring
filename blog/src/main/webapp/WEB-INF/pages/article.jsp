@@ -27,6 +27,10 @@
 	</section>	
 	<section class="container">		
 		<p>${article.content}</p>
-	</section>	
+		<hr>
+	</section>
+	<section class="container">
+		<p><a href="<spring:url value="/" />" class="btn btn-block btn-primary">Strona Główna</a></p>
+	</section>
 </body>
 </html>

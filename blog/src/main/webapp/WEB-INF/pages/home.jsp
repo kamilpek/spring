@@ -27,5 +27,17 @@
 				</div>
 			</section>
 		</c:forEach>
+		<section>			
+			<div class="container">
+				<c:choose>
+				    <c:when test="${permission}">				         
+				        <a href="<spring:url value="/logout" /> " class="btn btn-sm btn-outline-danger "> Wyloguj</a>
+				    </c:when>    
+				    <c:otherwise>
+				        <a href="<spring:url value="/login" /> " class="btn btn-sm btn-outline-success "> Zaloguj</a>
+				    </c:otherwise>
+				</c:choose>
+			</div>
+		</section>
 	</body>
 </html>
