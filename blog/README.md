@@ -2,6 +2,7 @@
 
 ## Funkcjonalności
 * dodawanie artykułów,
+* dodawanie ilustracji do artykułów,
 * logowanie użytkowników,
 
 ## Podgląd

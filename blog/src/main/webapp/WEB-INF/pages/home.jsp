@@ -19,11 +19,18 @@
 		<c:forEach items="${articles}" var="article">
 			<section>		
 				<div class="container">
-					<h3>${article.title}</h3>
-					<p class="articles-info">Dodany: ${article.created}</p>
-					<p class="articles-header">${article.intro}</p>
-					<p class="articles-btn"><a href="<spring:url value="/articles/article?id=${article.articleID}" /> "
-					   class="btn btn-sm btn-outline-primary "> Czytaj więcej...</a></p>
+					<div class="row">
+						<div class="col-4">
+							<img src="/images/articles/${article.uploadFile}" class="articles-image">
+						</div>
+						<div class="col-8">
+							<h3>${article.title}</h3>
+							<p class="articles-info">Dodany: ${article.created}</p>
+							<p class="articles-header">${article.intro}</p>
+							<p class="articles-btn"><a href="<spring:url value="/articles/article?id=${article.articleID}" /> "
+							   class="btn btn-sm btn-outline-primary "> Czytaj więcej...</a></p>
+						</div>
+					</div>
 					<hr>
 				</div>
 			</section>

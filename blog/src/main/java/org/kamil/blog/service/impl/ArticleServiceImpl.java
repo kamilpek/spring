@@ -36,13 +36,15 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public String saveImage(MultipartFile imageFile) throws Exception {
-		String folder = "/photos/" + imageFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") 
-				+ Math.random() * (9999 - 1000) + ".jpg";
-		byte[] bytes = imageFile.getBytes();
-		Path path = Paths.get(folder);
+		String fileName = imageFile.getOriginalFilename().replaceFirst("[.][^.]+$", "");
+		String fileExt = imageFile.getOriginalFilename().split("\\.")[1];		
+		String file = fileName + (int) (Math.random() * (9999 - 1000)) + "." + fileExt;		
+		
+		byte[] bytes = imageFile.getBytes();		
+		Path path = Paths.get(new File("src\\main\\resources\\static\\images").getAbsolutePath() + "\\articles\\" + file);
 		Files.write(path, bytes);
 		
-		return folder;
+		return file;
 	}
 
 }

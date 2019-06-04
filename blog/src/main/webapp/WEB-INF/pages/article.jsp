@@ -22,6 +22,10 @@
 		</div>
 	</section>
 	<section class="container">		
+		<img src="/images/articles/${article.uploadFile}" class="articles-image">
+		<hr>		
+	</section>	
+	<section class="container">		
 		<p>${article.intro}</p>
 		<hr>		
 	</section>	
