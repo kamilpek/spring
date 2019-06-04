@@ -18,8 +18,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
 	@Override
 	public Article addArticle(Article article) {
-		articleDao.addArticle(article);
-		return null;
+		return articleDao.addArticle(article);		
 	}
 
 	@Override

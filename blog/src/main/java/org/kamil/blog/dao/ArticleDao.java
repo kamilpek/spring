@@ -27,7 +27,6 @@ public class ArticleDao {
 	public Article addArticle(Article article) {
 		EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction et = null;
-		Article insertedArticle = null;
 		
 		try {
 			et = entityManager.getTransaction();
@@ -35,16 +34,15 @@ public class ArticleDao {
 			entityManager.persist(article);
 			et.commit();
 		} catch (Exception ex) {
-
             if (et != null) {
                 et.rollback();
             }
             ex.printStackTrace();
-        } finally {            
+        } finally {
     		entityManager.close();
         }
 		
-		return insertedArticle;
+		return article;
 	}
 	
 	@Transactional

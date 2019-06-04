@@ -27,7 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/articles/add").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and().formLogin().defaultSuccessUrl("/")
-		.and().logout().logoutSuccessUrl("/");
+		.and().logout().logoutSuccessUrl("/")
+		.and().cors().and().csrf().disable();
 	}
 
 }

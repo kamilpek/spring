@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,18 +46,34 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewClientForm(@ModelAttribute("newArticle") Article articleToBeAdded, ModelMap map, BindingResult result) {
+	public String processAddNewClientForm(@ModelAttribute("newArticle") Article articleToBeAdded, ModelMap map, BindingResult result, @RequestParam("imageFile") MultipartFile imageFile) {
 		String[] suppressedFields = result.getSuppressedFields();
 		
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("Próba wiązania niedozwolonych pól: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
-		}
+		}		
 		
+		String uploadFile = uploadImage(imageFile);
+		articleToBeAdded.setUploadFile(uploadFile);
 		Date date = new java.util.Date();
 		Timestamp timestamp = new java.sql.Timestamp(date.getTime());
 		articleToBeAdded.setCreated(timestamp);
 		articleService.addArticle(articleToBeAdded);
+		
 		return "redirect:/articles/all";
+	}
+	
+	public String uploadImage(MultipartFile imageFile) {
+		String returnValue = "";
+		
+		try {
+			returnValue = articleService.saveImage(imageFile);
+		} catch (Exception e) {			
+			e.printStackTrace();
+			returnValue = "error";
+		}
+		
+		return returnValue;		
 	}
 
 }

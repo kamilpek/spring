@@ -30,11 +30,15 @@ public class Article {
 	@Column(name = "created", nullable = false)
 	Timestamp created;
 	
+	@Column(name = "uploadFile", nullable = false)
+	private String uploadFile;
+	
 	public Article() {
 		super();
 	}	
 
-	public Article(int articleID, String title, String intro, String content, String author, Timestamp created) {
+	public Article(int articleID, String title, String intro, String content, String author, Timestamp created,
+			String uploadFile) {
 		super();
 		this.articleID = articleID;
 		this.title = title;
@@ -42,6 +46,7 @@ public class Article {
 		this.content = content;
 		this.author = author;
 		this.created = created;
+		this.uploadFile = uploadFile;
 	}
 
 	public int getArticleID() {
@@ -90,6 +95,14 @@ public class Article {
 
 	public void setCreated(Timestamp created) {
 		this.created = created;
-	}	
+	}
+
+	public String getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(String uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 }

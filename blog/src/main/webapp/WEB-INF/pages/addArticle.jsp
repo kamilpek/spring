@@ -18,7 +18,7 @@
 	</section>
 
 	<section class="container">
-		<form:form  modelAttribute="newArticle" class="form-horizontal">
+		<form:form  modelAttribute="newArticle" enctype="multipart/form-data" class="form-horizontal">
 			<fieldset>						
 				
 				<div class="form-group">
@@ -42,12 +42,18 @@
 				</div>
 				
 				<div class="form-group">
+					<label class="control-label" for="content">Ilustracja</label>
+					<input type="file" name="imageFile" class="form-control">					
+				</div>			
+				
+				<div class="form-group">
 					<p><input type="submit" id="btnAdd" class="btn btn-block btn-success" value ="Dodaj artykuł"/></p>
 					<p><a href="<spring:url value="/articles/all" />" class="btn btn-block btn-secondary">Powrót</a></p>
-				</div>				
+				</div>
 			
 			</fieldset>
-		</form:form>
+		</form:form>	
+		
 	</section>
 </body>
 </html>
