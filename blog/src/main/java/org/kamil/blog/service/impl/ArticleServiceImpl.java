@@ -41,7 +41,7 @@ public class ArticleServiceImpl implements ArticleService {
 		String file = fileName + (int) (Math.random() * (9999 - 1000)) + "." + fileExt;		
 		
 		byte[] bytes = imageFile.getBytes();		
-		Path path = Paths.get(new File("src\\main\\resources\\static\\images").getAbsolutePath() + "\\articles\\" + file);
+		Path path = Paths.get(new File("src\\main\\webapp\\WEB-INF\\images").getAbsolutePath() + "\\articles\\" + file);
 		Files.write(path, bytes);
 		
 		return file;

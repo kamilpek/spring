@@ -15,9 +15,9 @@
 .articles-info{
 	color: #606060;
 	font-style: italic;
-}+
+}
 
-.articles-image{
+img {
 	width: 100%;
   	height: auto;
 }

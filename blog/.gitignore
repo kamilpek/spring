@@ -1,0 +1,9 @@
+*.db
+.metadata
+.settings
+.project
+.classpath
+target
+tmp/
+*.tmp
+src/main/webapp/WEB-INF/images/

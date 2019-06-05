@@ -21,7 +21,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-4">
-							<img src="/images/articles/${article.uploadFile}" class="articles-image">
+							<img src="/images/articles/${article.uploadFile}">
 						</div>
 						<div class="col-8">
 							<h3>${article.title}</h3>
