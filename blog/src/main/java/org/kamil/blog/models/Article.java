@@ -62,7 +62,11 @@ public class Article {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		if(title != null && title.length() > 0) {
+			this.title = title;
+		} else {
+			throw new IllegalArgumentException("Pusty tytuł");
+		}		
 	}
 
 	public String getIntro() {
@@ -70,7 +74,11 @@ public class Article {
 	}
 
 	public void setIntro(String intro) {
-		this.intro = intro;
+		if(intro != null && intro.length() > 0) {
+			this.intro= intro;
+		} else {
+			throw new IllegalArgumentException("Pusty tytuł");
+		}		
 	}
 
 	public String getContent() {
@@ -78,7 +86,11 @@ public class Article {
 	}
 
 	public void setContent(String content) {
-		this.content = content;
+		if(content != null && content.length() > 0) {
+			this.content = content;
+		} else {
+			throw new IllegalArgumentException("Pusty tytuł");
+		}
 	}
 
 	public String getAuthor() {
@@ -86,7 +98,11 @@ public class Article {
 	}
 
 	public void setAuthor(String author) {
-		this.author = author;
+		if(author != null && author.length() > 0) {
+			this.author = author;
+		} else {
+			throw new IllegalArgumentException("Pusty tytuł");
+		}
 	}
 
 	public Timestamp getCreated() {
